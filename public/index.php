@@ -46,19 +46,15 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
-
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 try {
-$response = $kernel->handle(
+
+    $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+    $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
-);
+    );
 } catch (Exception $e){
     echo $e->getMessage();
-    echo '<br/>';
-    echo 'User: '.exec('whoami');
-    echo '<br/>';
-    echo 'Group: '.exec('groups');
-    echo '<br/>';
 }
 
 $response->send();
